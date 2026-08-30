@@ -329,7 +329,7 @@ function TutorCard({
               ★ {tutor.rating}
             </span>
             <span className="text-xs" style={{ color: "#666" }}>
-              {tutor.sessions} занятий
+              {tutor.sessions} в топ-вуз за год
             </span>
             <span
               className="font-mono-label text-xs font-bold"
