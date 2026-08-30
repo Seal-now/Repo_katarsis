@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { TUTORS, calcMatch, PINK, YELLOW, type Tutor } from "./data/tutors";
+import { useState, useEffect, useRef } from "react";
+import { TUTORS, SUBJECTS, calcMatch, PINK, YELLOW, type Tutor } from "./data/tutors";
 
 // ─── palette ─────────────────────────────────────────────────────────────────
 const DARK = "#0D0D0D";
@@ -84,6 +84,115 @@ function Marquee() {
             {t}
           </span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Subject step ─────────────────────────────────────────────────────────────
+function SubjectStep({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (id: string) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const filtered = query.trim().length === 0
+    ? SUBJECTS
+    : SUBJECTS.filter((s) =>
+        s.label.toLowerCase().includes(query.toLowerCase()) ||
+        s.group.toLowerCase().includes(query.toLowerCase())
+      );
+
+  // Group by group name for display
+  const groups = filtered.reduce<Record<string, typeof SUBJECTS>>((acc, s) => {
+    (acc[s.group] = acc[s.group] ?? []).push(s);
+    return acc;
+  }, {});
+
+  return (
+    <div className="w-full max-w-lg mx-auto px-5">
+      <span
+        className="font-mono-label text-xs uppercase tracking-widest inline-block px-3 py-1.5 rounded-full mb-5"
+        style={{ background: YELLOW + "33", color: YELLOW }}
+      >
+        ПРЕДМЕТ
+      </span>
+      <h2
+        className="font-display font-bold leading-tight mb-5"
+        style={{ color: "#F0EDE8", fontSize: "clamp(1.1rem, 4vw, 1.6rem)" }}
+      >
+        Какой предмет тебе нужен?
+      </h2>
+
+      {/* Search input */}
+      <div className="relative mb-4">
+        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-lg pointer-events-none">🔍</span>
+        <input
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Например: Физика ЕГЭ..."
+          className="w-full pl-10 pr-4 py-3.5 rounded-2xl border-2 outline-none text-sm font-medium transition-all"
+          style={{
+            background: "#1E1E1E",
+            borderColor: query ? PINK : "#2A2A2A",
+            color: "#F0EDE8",
+          }}
+        />
+        {query && (
+          <button
+            onClick={() => setQuery("")}
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-sm"
+            style={{ color: "#666" }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
+      {/* Results */}
+      <div className="max-h-72 overflow-y-auto space-y-4 pr-1" style={{ scrollbarWidth: "thin" }}>
+        {Object.entries(groups).map(([group, items]) => (
+          <div key={group}>
+            <p className="font-mono-label text-xs uppercase tracking-widest mb-2" style={{ color: "#555" }}>
+              {group}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {items.map((s) => {
+                const sel = value === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => onChange(s.id)}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl border-2 text-sm font-semibold transition-all active:scale-95"
+                    style={{
+                      background: sel ? PINK : "#1E1E1E",
+                      borderColor: sel ? PINK : "#2A2A2A",
+                      color: sel ? "#0D0D0D" : "#CCC",
+                    }}
+                  >
+                    <span>{s.emoji}</span>
+                    <span>{s.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        {filtered.length === 0 && (
+          <p className="text-sm text-center py-6" style={{ color: "#555" }}>
+            Ничего не найдено — попробуй другой запрос
+          </p>
+        )}
       </div>
     </div>
   );
@@ -285,7 +394,8 @@ type Screen = "home" | "quiz" | "results";
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>("home");
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(-1); // -1 = subject step
+  const [selectedSubject, setSelectedSubject] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [filter, setFilter] = useState<"all" | "top">("all");
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -304,12 +414,15 @@ export default function App() {
   const currentStep = STEPS[step];
   const currentAnswer = answers[currentStep?.id] ?? "";
   const answered = Object.keys(answers).length === STEPS.length;
-  const progress = ((step + 1) / STEPS.length) * 100;
+  // step -1 = subject, steps 0..4 = quiz; total = 6 steps
+  const progress = step === -1 ? 0 : ((step + 1) / STEPS.length) * 100;
 
-  const tutorsWithMatch = TUTORS.map((t) => ({
-    ...t,
-    match: calcMatch(t, answers),
-  })).sort((a, b) => b.match - a.match);
+  const subjectLabel = SUBJECTS.find((s) => s.id === selectedSubject)?.label ?? "";
+
+  const tutorsWithMatch = TUTORS
+    .filter((t) => !selectedSubject || t.subjectIds.includes(selectedSubject))
+    .map((t) => ({ ...t, match: calcMatch(t, answers) }))
+    .sort((a, b) => b.match - a.match);
 
   const displayed =
     filter === "top"
@@ -318,7 +431,8 @@ export default function App() {
 
   function startQuiz() {
     setAnswers({});
-    setStep(0);
+    setSelectedSubject("");
+    setStep(-1);
     setScreen("quiz");
     window.scrollTo(0, 0);
   }
@@ -682,7 +796,7 @@ export default function App() {
             className="font-mono-label text-xs"
             style={{ color: "#555" }}
           >
-            {step + 1} / {STEPS.length}
+            {step === -1 ? "предмет" : `${step + 1} / ${STEPS.length}`}
           </span>
         </div>
 
@@ -697,16 +811,23 @@ export default function App() {
           />
         </div>
 
-        {/* Step dots */}
+        {/* Step dots — subject + 5 quiz steps */}
         <div className="flex gap-2 justify-center pt-6">
+          {/* subject dot */}
+          <div
+            className="h-1.5 rounded-full transition-all duration-300"
+            style={{
+              width: step === -1 ? "28px" : "8px",
+              background: step >= 0 ? PINK : YELLOW,
+            }}
+          />
           {STEPS.map((s, i) => (
             <div
               key={s.id}
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: i === step ? "28px" : "8px",
-                background:
-                  i < step ? PINK : i === step ? YELLOW : "#2A2A2A",
+                background: i < step ? PINK : i === step ? YELLOW : "#2A2A2A",
               }}
             />
           ))}
@@ -714,21 +835,30 @@ export default function App() {
 
         {/* Card */}
         <div className="flex-1 flex items-center py-8">
-          <QuizCard
-            step={currentStep}
-            value={currentAnswer}
-            onChange={(v) =>
-              setAnswers((a) => ({ ...a, [currentStep.id]: v }))
-            }
-          />
+          {step === -1 ? (
+            <SubjectStep
+              value={selectedSubject}
+              onChange={setSelectedSubject}
+            />
+          ) : (
+            <QuizCard
+              step={currentStep}
+              value={currentAnswer}
+              onChange={(v) =>
+                setAnswers((a) => ({ ...a, [currentStep.id]: v }))
+              }
+            />
+          )}
         </div>
 
         {/* Buttons */}
         <div className="px-5 pb-8 sm:pb-10 flex gap-3 max-w-lg mx-auto w-full">
           <button
-            onClick={() =>
-              step > 0 ? setStep((s) => s - 1) : setScreen("home")
-            }
+            onClick={() => {
+              if (step === -1) setScreen("home");
+              else if (step === 0) setStep(-1);
+              else setStep((s) => s - 1);
+            }}
             className="flex-1 py-3.5 rounded-2xl font-display text-sm font-bold border transition-all active:scale-95"
             style={{ borderColor: "#2A2A2A", color: "#666" }}
           >
@@ -736,18 +866,28 @@ export default function App() {
           </button>
           <button
             onClick={() => {
-              if (!currentAnswer) return;
-              if (step < STEPS.length - 1) setStep((s) => s + 1);
-              else setScreen("results");
+              if (step === -1) {
+                setStep(0);
+              } else if (!currentAnswer) {
+                return;
+              } else if (step < STEPS.length - 1) {
+                setStep((s) => s + 1);
+              } else {
+                setScreen("results");
+              }
             }}
-            disabled={!currentAnswer}
+            disabled={step >= 0 && !currentAnswer}
             className="flex-[3] py-3.5 rounded-2xl font-display text-sm font-bold transition-all active:scale-95 disabled:opacity-30"
             style={{
-              background: currentAnswer ? PINK : "#2A2A2A",
-              color: currentAnswer ? DARK : "#555",
+              background: step === -1 || currentAnswer ? PINK : "#2A2A2A",
+              color: step === -1 || currentAnswer ? DARK : "#555",
             }}
           >
-            {step === STEPS.length - 1
+            {step === -1
+              ? selectedSubject
+                ? `${SUBJECTS.find(s => s.id === selectedSubject)?.emoji} Дальше →`
+                : "Пропустить →"
+              : step === STEPS.length - 1
               ? "Показать результат →"
               : "Дальше →"}
           </button>
@@ -797,33 +937,42 @@ export default function App() {
         <div className="mb-6">
           {answered ? (
             <>
-              <div
-                className="font-mono-label text-xs uppercase tracking-widest inline-block px-3 py-1 rounded-full mb-3"
-                style={{ background: PINK + "22", color: PINK }}
-              >
-                твой профиль готов
+              <div className="flex flex-wrap gap-2 mb-3">
+                <div
+                  className="font-mono-label text-xs uppercase tracking-widest inline-block px-3 py-1 rounded-full"
+                  style={{ background: PINK + "22", color: PINK }}
+                >
+                  твой профиль готов
+                </div>
+                {subjectLabel && (
+                  <div
+                    className="font-mono-label text-xs uppercase tracking-widest inline-flex items-center gap-1 px-3 py-1 rounded-full"
+                    style={{ background: YELLOW + "22", color: YELLOW }}
+                  >
+                    {SUBJECTS.find(s => s.id === selectedSubject)?.emoji} {subjectLabel}
+                  </div>
+                )}
               </div>
               <h1
                 className="font-display font-black"
-                style={{
-                  fontSize: "clamp(1.4rem, 4vw, 2.2rem)",
-                  color: "#F0EDE8",
-                }}
+                style={{ fontSize: "clamp(1.4rem, 4vw, 2.2rem)", color: "#F0EDE8" }}
               >
                 вот твои репетиторы 🎯
               </h1>
             </>
           ) : (
             <>
-              <h1
-                className="font-display font-black mb-2"
-                style={{
-                  fontSize: "clamp(1.4rem, 4vw, 2.2rem)",
-                  color: "#F0EDE8",
-                }}
-              >
-                все репетиторы
-              </h1>
+              <div className="flex flex-wrap gap-2 mb-3 items-center">
+                <h1
+                  className="font-display font-black"
+                  style={{ fontSize: "clamp(1.4rem, 4vw, 2.2rem)", color: "#F0EDE8" }}
+                >
+                  {subjectLabel ? subjectLabel : "Все репетиторы"}
+                </h1>
+                {subjectLabel && (
+                  <span className="text-2xl">{SUBJECTS.find(s => s.id === selectedSubject)?.emoji}</span>
+                )}
+              </div>
               <p className="text-sm" style={{ color: "#666" }}>
                 <button
                   onClick={startQuiz}
