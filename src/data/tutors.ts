@@ -195,7 +195,7 @@ export const TUTORS: Tutor[] = [
     emoji: "⚡",
     photo: photo(7),
     price: "от 2 000 ₽/ч",
-    rating: 4.9,
+    rating: 5.0,
     sessions: 60,
     tags: ["Фокус", "Разговором", "Вдумчиво", "Честно"],
     profiles: { vibe: "focus", style: "talk", pace: "slow", feedback: "honest", goal: "exam" },
