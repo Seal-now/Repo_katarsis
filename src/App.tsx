@@ -389,7 +389,7 @@ export default function App() {
         </nav>
 
         {/* Hero */}
-        <section className="pt-28 pb-16 px-6 md:px-12 relative overflow-hidden">
+        <section className="pt-24 pb-12 px-5 md:px-12 relative overflow-hidden">
           {/* bg blobs */}
           <div
             className="absolute top-10 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
@@ -426,7 +426,7 @@ export default function App() {
               подбор репетитора по вайбу
             </div>
 
-            <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] mb-6 tracking-tight">
+            <h1 className="font-display text-[2.4rem] sm:text-5xl md:text-7xl font-black leading-[0.95] mb-6 tracking-tight">
               найти репетитора,{" "}
               <span
                 className="relative inline-block"
@@ -441,7 +441,7 @@ export default function App() {
               <span style={{ color: YELLOW }}>кайфово учиться</span>
             </h1>
 
-            <p className="text-base md:text-lg leading-relaxed max-w-md mb-10" style={{ color: "#888" }}>
+            <p className="text-sm md:text-lg leading-relaxed max-w-md mb-8" style={{ color: "#888" }}>
               Найти хорошего репетитора сложно. Найти психологически совместимого — ещё сложнее.{" "}
               <span style={{ color: "#F0EDE8" }}>Мы сделали это за 5 минут.</span>
             </p>
@@ -464,7 +464,7 @@ export default function App() {
             </div>
 
             {/* Stats row */}
-            <div className="flex flex-wrap gap-8 mt-14">
+            <div className="flex flex-wrap gap-6 mt-10">
               {[["240+", "репетиторов"], ["4.8★", "средний рейтинг"], ["5 мин", "на подбор"]].map(([n, l]) => (
                 <div key={l}>
                   <p className="font-display text-xl font-black" style={{ color: YELLOW }}>{n}</p>
@@ -478,11 +478,11 @@ export default function App() {
         <Marquee />
 
         {/* Problem section */}
-        <section className="px-6 md:px-12 py-20">
+        <section className="px-5 md:px-12 py-14">
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {/* Pain */}
-              <div className="rounded-3xl p-8 border" style={{ background: CARD_BG, borderColor: "#2A2A2A" }}>
+              <div className="rounded-3xl p-6 md:p-8 border" style={{ background: CARD_BG, borderColor: "#2A2A2A" }}>
                 <div className="text-4xl mb-4">😵‍💫</div>
                 <h3 className="font-display text-xl font-bold mb-3" style={{ color: "#F0EDE8" }}>
                   Как выбирают обычно
@@ -498,7 +498,7 @@ export default function App() {
 
               {/* Solution */}
               <div
-                className="rounded-3xl p-8 border"
+                className="rounded-3xl p-6 md:p-8 border"
                 style={{ background: PINK + "15", borderColor: PINK + "44" }}
               >
                 <div className="text-4xl mb-4">✨</div>
@@ -518,10 +518,10 @@ export default function App() {
         </section>
 
         {/* Steps */}
-        <section className="px-6 md:px-12 py-10 pb-20">
+        <section className="px-5 md:px-12 py-10 pb-16">
           <div className="max-w-4xl mx-auto">
             <p className="font-mono-label text-xs uppercase tracking-widest mb-2" style={{ color: "#555" }}>как работает</p>
-            <h2 className="font-display text-3xl md:text-4xl font-black mb-10" style={{ color: "#F0EDE8" }}>
+            <h2 className="font-display text-2xl md:text-4xl font-black mb-8" style={{ color: "#F0EDE8" }}>
               три шага до <span style={{ color: PINK }}>своего</span>
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
