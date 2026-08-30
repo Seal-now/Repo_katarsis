@@ -125,7 +125,7 @@ export const TUTORS: Tutor[] = [
   },
   {
     id: 4,
-    name: "Кирилл",
+    name: "Кирилл Л.",
     subject: "История",
     subjectIds: ["hist_ege", "hist_oge", "soc_ege", "soc_oge"],
     emoji: "🏛️",
@@ -186,6 +186,22 @@ export const TUTORS: Tutor[] = [
     bio: "Математика, физика, химия — школа и ВУЗ. Квантовая химия — отдельная специализация. Топ крутой преподаватель: объясняю разговором, вдумчиво и честно, без лишней воды. Фокус на глубоком понимании, а не зубрёжке.",
     color: YELLOW,
     telegram: "beybars_r",
+  },
+  {
+    id: 8,
+    name: "Анастасия Д.",
+    subject: "Математика · Физика · Химия · ВУЗ",
+    subjectIds: ["math_ege", "math_base", "math_oge", "phys_ege", "phys_oge", "phys_vuz", "chem_ege", "chem_oge", "chem_vuz", "quantum_chem", "physchem", "crystchem", "analchem", "matan", "linal", "terver", "diffur"],
+    emoji: "🔬",
+    photo: photo(8),
+    price: "по договорённости",
+    rating: 5.0,
+    sessions: 20,
+    tags: ["Фокус", "Практикой", "Честно", "Глубоко"],
+    profiles: { vibe: "focus", style: "hands", pace: "fast", feedback: "honest", goal: "exam" },
+    bio: "Химфак МГУ. ЕГЭ: 99 по математике, 95 по физике. 4 года репетиторства, 20+ учеников. За 2023–2024: 9 учеников сдали ЕГЭ на 85+, 6 студентов закрыли сессию на отлично, 2 школьника победили в олимпиадах по химии. Индивидуальный разбор тем, развиваю логику — не натаскиваю. Школа (7–11 кл.), ВУЗ (матан, линал, физхимия, кристаллохимия). Онлайн/оффлайн, Москва.",
+    color: MINT,
+    telegram: "viperion_6",
   },
 ];
 
