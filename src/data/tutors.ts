@@ -185,7 +185,7 @@ export const TUTORS: Tutor[] = [
     profiles: { vibe: "creative", style: "visual", pace: "mid", feedback: "soft", goal: "interest" },
     bio: "Магистратура РГГУ, направление «Русская культура». Красные дипломы за школу и бакалавриат. Занятия онлайн (Google Meet + виртуальная доска miro/figma, презентации). Программа строится индивидуально: повторение → новая тема → практика. Быстро отвечаю на вопросы между занятиями. 6+ лет публичных лекций по культуре.",
     color: SKY,
-    telegram: "maria_culture",
+    telegram: "elfiora",
   },
   {
     id: 7,
@@ -201,7 +201,7 @@ export const TUTORS: Tutor[] = [
     profiles: { vibe: "focus", style: "talk", pace: "slow", feedback: "honest", goal: "exam" },
     bio: "Математика, физика, химия — школа и ВУЗ. Квантовая химия — отдельная специализация. Топ крутой преподаватель: объясняю разговором, вдумчиво и честно, без лишней воды. Фокус на глубоком понимании, а не зубрёжке.",
     color: YELLOW,
-    telegram: "rauf_tutor",
+    telegram: "beybars_r",
   },
 ];
 

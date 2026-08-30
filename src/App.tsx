@@ -565,8 +565,8 @@ export default function App() {
             {/* Stats */}
             <div className="flex flex-wrap gap-6 sm:gap-10 mt-12">
               {[
-                ["240+", "репетиторов"],
-                ["4.8★", "средний рейтинг"],
+                ["топ", "преподаватели"],
+                ["90%", "из МГУ"],
                 ["5 мин", "на подбор"],
               ].map(([n, l]) => (
                 <div key={l}>
