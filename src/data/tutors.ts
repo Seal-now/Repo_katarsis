@@ -70,6 +70,15 @@ export interface Tutor {
   telegram: string;
 }
 
+// ─── Фото ─────────────────────────────────────────────────────────────────────
+// Положи файл public/photos/tutor_N.png (400×400 px)
+// Если файла нет — используется заглушка с Unsplash
+function photo(id: number, unsplashFallback: string): string {
+  return `/photos/tutor_${id}.png`;
+  // Чтобы временно вернуть Unsplash — замени строку выше на:
+  // return unsplashFallback;
+}
+
 export const TUTORS: Tutor[] = [
   {
     id: 1,
@@ -77,7 +86,7 @@ export const TUTORS: Tutor[] = [
     subject: "Математика",
     subjectIds: ["math_ege", "math_base", "math_oge", "math_school"],
     emoji: "🧮",
-    photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&auto=format",
+    photo: photo(1, "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&auto=format"),
     price: "2 400 ₽",
     rating: 4.9,
     sessions: 312,
@@ -93,7 +102,7 @@ export const TUTORS: Tutor[] = [
     subject: "Программирование",
     subjectIds: ["python", "web", "programming", "cs_ege"],
     emoji: "💻",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format",
+    photo: photo(2, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format"),
     price: "2 800 ₽",
     rating: 4.8,
     sessions: 227,
@@ -109,7 +118,7 @@ export const TUTORS: Tutor[] = [
     subject: "Русский / Лит-ра",
     subjectIds: ["rus_ege", "rus_oge", "rus_school", "literature"],
     emoji: "📚",
-    photo: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=400&fit=crop&auto=format",
+    photo: photo(3, "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=400&fit=crop&auto=format"),
     price: "2 200 ₽",
     rating: 5.0,
     sessions: 498,
@@ -125,7 +134,7 @@ export const TUTORS: Tutor[] = [
     subject: "История",
     subjectIds: ["hist_ege", "hist_oge", "soc_ege", "soc_oge"],
     emoji: "🏛️",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format",
+    photo: photo(4, "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format"),
     price: "1 900 ₽",
     rating: 4.7,
     sessions: 281,
@@ -141,7 +150,7 @@ export const TUTORS: Tutor[] = [
     subject: "Английский",
     subjectIds: ["eng_ege", "eng_oge", "eng_speak"],
     emoji: "🌍",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&auto=format",
+    photo: photo(5, "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&auto=format"),
     price: "2 600 ₽",
     rating: 4.9,
     sessions: 376,
@@ -157,7 +166,7 @@ export const TUTORS: Tutor[] = [
     subject: "Химия / Биология",
     subjectIds: ["chem_ege", "chem_oge", "bio_ege", "bio_oge", "phys_oge"],
     emoji: "🔬",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format",
+    photo: photo(6, "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format"),
     price: "2 100 ₽",
     rating: 4.6,
     sessions: 154,

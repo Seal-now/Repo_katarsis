@@ -290,6 +290,9 @@ function TutorCard({
               src={tutor.photo}
               alt={tutor.name}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
             />
           </div>
           <span className="absolute -bottom-1 -right-1 text-base">
