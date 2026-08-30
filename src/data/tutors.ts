@@ -2,9 +2,10 @@ export const PINK = "#F4BFC9";
 export const YELLOW = "#FFD47A";
 export const MINT = "#B8F5D0";
 export const LAVENDER = "#D4C5F9";
+export const PEACH = "#FFD0A8";
+export const SKY = "#A8D8FF";
 
 // ─── Список предметов для поиска ──────────────────────────────────────────────
-// subjects — ключи, по которым репетитор отображается в результатах
 // Добавляй / убирай строки по необходимости
 export const SUBJECTS = [
   // Математика
@@ -12,6 +13,11 @@ export const SUBJECTS = [
   { id: "math_base",   label: "Математика ЕГЭ (база)",     emoji: "🔢", group: "Математика" },
   { id: "math_oge",    label: "Математика ОГЭ",             emoji: "🧮", group: "Математика" },
   { id: "math_school", label: "Математика (школьная)",     emoji: "➕", group: "Математика" },
+  { id: "matan",       label: "Математический анализ",     emoji: "∫",  group: "Математика" },
+  { id: "linal",       label: "Линейная алгебра",           emoji: "🔷", group: "Математика" },
+  { id: "terver",      label: "Теория вероятностей",        emoji: "🎲", group: "Математика" },
+  { id: "diffur",      label: "Дифференциальные уравнения", emoji: "〰️", group: "Математика" },
+  { id: "termeh",      label: "Теормех",                   emoji: "⚙️", group: "Математика" },
   // Русский язык
   { id: "rus_ege",     label: "Русский язык ЕГЭ",          emoji: "📝", group: "Русский язык" },
   { id: "rus_oge",     label: "Русский язык ОГЭ",          emoji: "✏️", group: "Русский язык" },
@@ -20,38 +26,43 @@ export const SUBJECTS = [
   // Физика
   { id: "phys_ege",    label: "Физика ЕГЭ",                emoji: "⚛️", group: "Физика" },
   { id: "phys_oge",    label: "Физика ОГЭ",                emoji: "🔭", group: "Физика" },
+  { id: "phys_vuz",    label: "Физика (ВУЗ)",              emoji: "🔬", group: "Физика" },
   // Химия
-  { id: "chem_ege",    label: "Химия ЕГЭ",                 emoji: "🧪", group: "Химия / Биология" },
-  { id: "chem_oge",    label: "Химия ОГЭ",                 emoji: "⚗️", group: "Химия / Биология" },
-  { id: "bio_ege",     label: "Биология ЕГЭ",              emoji: "🧬", group: "Химия / Биология" },
-  { id: "bio_oge",     label: "Биология ОГЭ",              emoji: "🌿", group: "Химия / Биология" },
+  { id: "chem_ege",    label: "Химия ЕГЭ",                 emoji: "🧪", group: "Химия" },
+  { id: "chem_oge",    label: "Химия ОГЭ",                 emoji: "⚗️", group: "Химия" },
+  { id: "chem_vuz",    label: "Химия (ВУЗ)",               emoji: "🔬", group: "Химия" },
+  { id: "quantum_chem",label: "Квантовая химия",           emoji: "⚛️", group: "Химия" },
+  { id: "physchem",    label: "Физическая химия",          emoji: "🧬", group: "Химия" },
+  { id: "crystchem",   label: "Кристаллохимия",            emoji: "💎", group: "Химия" },
+  { id: "analchem",    label: "Аналитическая химия",       emoji: "🏺", group: "Химия" },
+  // Биология
+  { id: "bio_ege",     label: "Биология ЕГЭ",              emoji: "🧬", group: "Биология" },
+  { id: "bio_oge",     label: "Биология ОГЭ",              emoji: "🌿", group: "Биология" },
   // История / Обществознание
   { id: "hist_ege",    label: "История ЕГЭ",               emoji: "🏛️", group: "История / Обществознание" },
   { id: "hist_oge",    label: "История ОГЭ",               emoji: "📜", group: "История / Обществознание" },
   { id: "soc_ege",     label: "Обществознание ЕГЭ",        emoji: "🗳️", group: "История / Обществознание" },
   { id: "soc_oge",     label: "Обществознание ОГЭ",        emoji: "⚖️", group: "История / Обществознание" },
+  { id: "mhk",         label: "МХК",                       emoji: "🎨", group: "История / Обществознание" },
   // Иностранные языки
   { id: "eng_ege",     label: "Английский язык ЕГЭ",       emoji: "🇬🇧", group: "Иностранные языки" },
   { id: "eng_oge",     label: "Английский язык ОГЭ",       emoji: "🌍", group: "Иностранные языки" },
   { id: "eng_speak",   label: "Английский разговорный",    emoji: "💬", group: "Иностранные языки" },
-  { id: "de_lang",     label: "Немецкий язык",             emoji: "🇩🇪", group: "Иностранные языки" },
-  { id: "fr_lang",     label: "Французский язык",          emoji: "🇫🇷", group: "Иностранные языки" },
   // Информатика / Программирование
   { id: "cs_ege",      label: "Информатика ЕГЭ",           emoji: "💾", group: "Информатика" },
   { id: "cs_oge",      label: "Информатика ОГЭ",           emoji: "🖥️", group: "Информатика" },
   { id: "python",      label: "Python",                    emoji: "🐍", group: "Информатика" },
   { id: "web",         label: "Web-разработка",            emoji: "🌐", group: "Информатика" },
-  { id: "programming", label: "Программирование (общее)",  emoji: "💻", group: "Информатика" },
-  // География / Другое
+  // Другое
   { id: "geo_ege",     label: "География ЕГЭ",             emoji: "🗺️", group: "Другое" },
-  { id: "geo_oge",     label: "География ОГЭ",             emoji: "🌏", group: "Другое" },
+  { id: "culture",     label: "Культурология / МХК",       emoji: "🎭", group: "Другое" },
 ];
 
 export interface Tutor {
   id: number;
   name: string;
-  subject: string;        // Отображаемое название предмета
-  subjectIds: string[];   // ID из SUBJECTS — по каким предметам ведёт репетитор
+  subject: string;        // Отображаемое название предмета на карточке
+  subjectIds: string[];   // ID из SUBJECTS выше — по каким предметам находится через поиск
   emoji: string;
   photo: string;
   price: string;
@@ -71,110 +82,126 @@ export interface Tutor {
 }
 
 // ─── Фото ─────────────────────────────────────────────────────────────────────
-// Положи файл public/photos/tutor_N.png (400×400 px)
-// Если файла нет — используется заглушка с Unsplash
-function photo(id: number, unsplashFallback: string): string {
+// Положи файл public/photos/tutor_N.png (400×400 px, квадрат)
+// Если файл не найден — карточка показывает цветной фон с эмодзи
+function photo(id: number): string {
   return `/photos/tutor_${id}.png`;
-  // Чтобы временно вернуть Unsplash — замени строку выше на:
-  // return unsplashFallback;
 }
 
+// ─── Репетиторы ───────────────────────────────────────────────────────────────
+// Чтобы добавить нового — скопируй блок { ... }, дай новый id, заполни поля
 export const TUTORS: Tutor[] = [
   {
     id: 1,
-    name: "Маша С.",
-    subject: "Математика",
-    subjectIds: ["math_ege", "math_base", "math_oge", "math_school"],
-    emoji: "🧮",
-    photo: photo(1, "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&auto=format"),
-    price: "2 400 ₽",
+    name: "Арина Н.",
+    subject: "Математика · Физика · Химия",
+    subjectIds: ["math_ege", "math_base", "math_oge", "math_school", "phys_ege", "phys_oge", "chem_ege", "chem_oge"],
+    emoji: "🌸",
+    photo: photo(1),
+    price: "по договорённости",
     rating: 4.9,
-    sessions: 312,
-    tags: ["Картинками", "Вдумчиво", "Чилл", "На примере"],
-    profiles: { vibe: "chill", style: "visual", pace: "slow", feedback: "example", goal: "interest" },
-    bio: "Объясняю через мемы и схемы. Никаких скучных формул без смысла.",
+    sessions: 150,
+    tags: ["Чилл", "Кайфово", "Добрый", "Понятно"],
+    profiles: { vibe: "chill", style: "visual", pace: "slow", feedback: "soft", goal: "interest" },
+    bio: "Очень чилловый и добрый преподаватель — со мной никогда не скучно. Объясняю так, что всё само укладывается в голове. Математика, физика и химия — мои три любви, и я умею эту любовь передать.",
     color: PINK,
-    telegram: "masha_math_tutor",
+    telegram: "arina_study",
   },
   {
     id: 2,
-    name: "Лёша В.",
-    subject: "Программирование",
-    subjectIds: ["python", "web", "programming", "cs_ege"],
-    emoji: "💻",
-    photo: photo(2, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format"),
-    price: "2 800 ₽",
+    name: "Валерий",
+    subject: "Химия · Математика",
+    subjectIds: ["chem_ege", "chem_oge", "chem_vuz", "math_school", "math_oge", "math_ege"],
+    emoji: "⚗️",
+    photo: photo(2),
+    price: "от 1 500 ₽/ч",
     rating: 4.8,
-    sessions: 227,
-    tags: ["Практикой", "Газ в пол", "Фокус", "Честно"],
-    profiles: { vibe: "focus", style: "hands", pace: "fast", feedback: "honest", goal: "career" },
-    bio: "С первого занятия пишем код. Реальные проекты, реальный результат.",
+    sessions: 80,
+    tags: ["Практикой", "Умеренно", "Терпеливо", "Дистанционно"],
+    profiles: { vibe: "chill", style: "hands", pace: "mid", feedback: "soft", goal: "exam" },
+    bio: "Дистанционный формат, последовательный разбор всех нужных тем с большим упором на практику — решаем задачи, а не просто читаем теорию. Терпеливость и тактичность — мои главные качества. Готов отвечать на вопросы по теме в свободное время.",
     color: YELLOW,
-    telegram: "lyosha_code",
+    telegram: "valeruj04",
   },
   {
     id: 3,
-    name: "Лена К.",
-    subject: "Русский / Лит-ра",
-    subjectIds: ["rus_ege", "rus_oge", "rus_school", "literature"],
-    emoji: "📚",
-    photo: photo(3, "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=400&fit=crop&auto=format"),
-    price: "2 200 ₽",
+    name: "Максим В.",
+    subject: "Математика · Физика · Химия · ВУЗ",
+    subjectIds: ["math_ege", "math_oge", "phys_ege", "phys_oge", "phys_vuz", "chem_ege", "chem_oge", "chem_vuz", "quantum_chem", "physchem", "crystchem", "analchem", "matan", "linal", "terver", "diffur", "termeh"],
+    emoji: "🔬",
+    photo: photo(3),
+    price: "от 2 500 ₽/ч",
     rating: 5.0,
-    sessions: 498,
-    tags: ["Разговором", "Умеренно", "Творчество", "Мягко"],
-    profiles: { vibe: "creative", style: "talk", pace: "mid", feedback: "soft", goal: "interest" },
-    bio: "Учу слышать язык. Обсуждаем, спорим, находим свои слова.",
+    sessions: 20,
+    tags: ["Фокус", "Честно", "Практикой", "Глубоко"],
+    profiles: { vibe: "focus", style: "hands", pace: "fast", feedback: "honest", goal: "exam" },
+    bio: "Химфак МГУ. ЕГЭ: 99 по математике, 95 по физике. 4 года репетиторства, 20+ учеников. За 2023–2024: 9 учеников сдали ЕГЭ на 85+, 6 студентов закрыли сессию на отлично, 2 школьника победили в региональных олимпиадах по химии. Объясняю сложное простыми словами — чтобы понять, а не зазубрить.",
     color: MINT,
-    telegram: "lena_ruslitru",
+    telegram: "viperion_6",
   },
   {
     id: 4,
-    name: "Дима П.",
+    name: "Кирилл",
     subject: "История",
     subjectIds: ["hist_ege", "hist_oge", "soc_ege", "soc_oge"],
     emoji: "🏛️",
-    photo: photo(4, "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format"),
-    price: "1 900 ₽",
-    rating: 4.7,
-    sessions: 281,
-    tags: ["Текстом", "По волне", "Чилл", "Письменно"],
-    profiles: { vibe: "chill", style: "text", pace: "wave", feedback: "written", goal: "exam" },
-    bio: "История — это детектив. Ищём улики, строим свою версию событий.",
+    photo: photo(4),
+    price: "2 000 ₽/ч",
+    rating: 4.9,
+    sessions: 120,
+    tags: ["Разговором", "Умеренно", "Творчество", "Наставник"],
+    profiles: { vibe: "creative", style: "talk", pace: "mid", feedback: "soft", goal: "interest" },
+    bio: "Аспирант истфака МГУ. Раскрываю суть исторических явлений, вписываю их в широкий контекст, строю структуру темы понятную для ученика — и главное, заинтересовываю в изучении прошлого. Опыт публичных лекций, подготовка к ЕГЭ на высокий балл. Весь курс отечественной и всеобщей истории, 5–11 классы.",
     color: LAVENDER,
-    telegram: "dima_history",
+    telegram: "kirlog",
   },
   {
     id: 5,
-    name: "Аня Б.",
-    subject: "Английский",
-    subjectIds: ["eng_ege", "eng_oge", "eng_speak"],
-    emoji: "🌍",
-    photo: photo(5, "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&auto=format"),
-    price: "2 600 ₽",
-    rating: 4.9,
-    sessions: 376,
-    tags: ["Картинками", "Умеренно", "Энергия", "Мягко"],
-    profiles: { vibe: "hype", style: "visual", pace: "mid", feedback: "soft", goal: "career" },
-    bio: "Говорим с первого урока. Ошибаться не страшно — это часть игры.",
-    color: YELLOW,
-    telegram: "anya_english",
+    name: "Людмила К.",
+    subject: "Математика · Физика",
+    subjectIds: ["math_ege", "math_base", "math_oge", "math_school", "phys_ege", "phys_oge"],
+    emoji: "✨",
+    photo: photo(5),
+    price: "от 2 000 ₽/ч",
+    rating: 5.0,
+    sessions: 300,
+    tags: ["Разговором", "Вдумчиво", "Мягко", "Стаж"],
+    profiles: { vibe: "chill", style: "talk", pace: "slow", feedback: "soft", goal: "interest" },
+    bio: "Репетитор со стажем. Суперски добрый и внимательный преподаватель — объясняю разговором, вдумчиво, мягко. С нами тебе будет комфортно и безопасно задавать любые вопросы. Математика и физика — в удовольствие.",
+    color: PEACH,
+    telegram: "Liusinija",
   },
   {
     id: 6,
-    name: "Игорь Л.",
-    subject: "Химия / Биология",
-    subjectIds: ["chem_ege", "chem_oge", "bio_ege", "bio_oge", "phys_oge"],
-    emoji: "🔬",
-    photo: photo(6, "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format"),
-    price: "2 100 ₽",
-    rating: 4.6,
-    sessions: 154,
-    tags: ["Практикой", "Умеренно", "Фокус", "Честно"],
-    profiles: { vibe: "focus", style: "hands", pace: "mid", feedback: "honest", goal: "exam" },
-    bio: "Наука = опыты + аналогии из жизни. Сухая теория — не моё.",
-    color: MINT,
-    telegram: "igor_science",
+    name: "Мария",
+    subject: "Русский язык · История · МХК",
+    subjectIds: ["rus_ege", "rus_oge", "rus_school", "literature", "hist_ege", "hist_oge", "mhk", "culture", "eng_oge"],
+    emoji: "🎭",
+    photo: photo(6),
+    price: "по договорённости",
+    rating: 4.8,
+    sessions: 90,
+    tags: ["Картинками", "Умеренно", "Творчество", "Интерактивно"],
+    profiles: { vibe: "creative", style: "visual", pace: "mid", feedback: "soft", goal: "interest" },
+    bio: "Магистратура РГГУ, направление «Русская культура». Красные дипломы за школу и бакалавриат. Занятия онлайн (Google Meet + виртуальная доска miro/figma, презентации). Программа строится индивидуально: повторение → новая тема → практика. Быстро отвечаю на вопросы между занятиями. 6+ лет публичных лекций по культуре.",
+    color: SKY,
+    telegram: "maria_culture",
+  },
+  {
+    id: 7,
+    name: "Рауф К.",
+    subject: "Математика · Физика · Химия",
+    subjectIds: ["math_ege", "math_oge", "phys_ege", "phys_oge", "chem_ege", "chem_oge", "quantum_chem", "matan", "linal", "terver"],
+    emoji: "⚡",
+    photo: photo(7),
+    price: "от 2 000 ₽/ч",
+    rating: 4.9,
+    sessions: 60,
+    tags: ["Фокус", "Разговором", "Вдумчиво", "Честно"],
+    profiles: { vibe: "focus", style: "talk", pace: "slow", feedback: "honest", goal: "exam" },
+    bio: "Математика, физика, химия — школа и ВУЗ. Квантовая химия — отдельная специализация. Топ крутой преподаватель: объясняю разговором, вдумчиво и честно, без лишней воды. Фокус на глубоком понимании, а не зубрёжке.",
+    color: YELLOW,
+    telegram: "rauf_tutor",
   },
 ];
 

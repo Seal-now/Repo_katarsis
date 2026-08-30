@@ -1052,21 +1052,41 @@ export default function App() {
         </div>
 
         {displayed.length === 0 && (
-          <div className="text-center py-20">
-            <div className="text-5xl mb-4">🤔</div>
-            <p
-              className="font-display text-lg font-bold mb-3"
-              style={{ color: "#F0EDE8" }}
+          <div>
+            {/* Sorry block */}
+            <div
+              className="rounded-3xl p-7 sm:p-10 mb-8 text-center border"
+              style={{ background: CARD_BG, borderColor: "#2A2A2A" }}
             >
-              Никто не прошёл фильтр
+              <div className="text-5xl mb-4">😔</div>
+              <h2
+                className="font-display font-bold mb-2"
+                style={{ fontSize: "clamp(1.1rem, 3vw, 1.5rem)", color: "#F0EDE8" }}
+              >
+                Идеального совпадения не нашлось
+              </h2>
+              <p className="text-sm mb-6" style={{ color: "#666" }}>
+                Но это не значит, что тебе некому помочь — посмотри всех наших репетиторов,
+                среди них точно найдётся твой человек 💛
+              </p>
+              <button
+                onClick={() => setFilter("all")}
+                className="font-display text-sm font-bold px-7 py-3.5 rounded-2xl border-2 transition-all active:scale-95"
+                style={{ background: PINK, color: DARK, borderColor: PINK }}
+              >
+                Показать всех репетиторов →
+              </button>
+            </div>
+
+            {/* All tutors fallback */}
+            <p className="font-mono-label text-xs uppercase tracking-widest mb-4" style={{ color: "#555" }}>
+              все репетиторы
             </p>
-            <button
-              onClick={() => setFilter("all")}
-              className="font-display text-sm font-bold underline"
-              style={{ color: PINK }}
-            >
-              Показать всех →
-            </button>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {tutorsWithMatch.map((t) => (
+                <TutorCard key={t.id} tutor={t} answered={answered} />
+              ))}
+            </div>
           </div>
         )}
       </div>
